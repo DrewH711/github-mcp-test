@@ -20,6 +20,14 @@ def divide_two_numbers_from_input():
             print("Error: Invalid input. Please enter numeric values.\n")
 
 
+def add_two_numbers_from_input():
+    first = float(input("Enter the first number: "))
+    second = float(input("Enter the second number: "))
+    total = first + second
+    print(f"Sum: {total}")
+
+
 if __name__ == "__main__":
     multiply_two_numbers_from_input()
     divide_two_numbers_from_input()
+    add_two_numbers_from_input()
