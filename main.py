@@ -27,7 +27,15 @@ def add_two_numbers_from_input():
     print(f"Sum: {total}")
 
 
+def exponentiate_two_numbers_from_input():
+    base = float(input("Enter the base: "))
+    exponent = float(input("Enter the exponent: "))
+    result = base ** exponent
+    print(f"Result: {result}")
+
+
 if __name__ == "__main__":
     multiply_two_numbers_from_input()
     divide_two_numbers_from_input()
     add_two_numbers_from_input()
+    exponentiate_two_numbers_from_input()
