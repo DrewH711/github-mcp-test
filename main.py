@@ -26,6 +26,10 @@ def add_two_numbers_from_input():
     total = first + second
     print(f"Sum: {total}")
 
+def subtract():
+    first = int(input("Enter first number: "))
+    second = int(input("Second #: "))
+    print(f"{second-first}")
 
 if __name__ == "__main__":
     multiply_two_numbers_from_input()
