@@ -27,6 +27,12 @@ def add_two_numbers_from_input():
     print(f"Sum: {total}")
 
 
+def subtract_two_numbers_from_input():
+    first = float(input("Enter the first number: "))
+    second = float(input("Enter the second number: "))
+    difference = first - second
+    print(f"Difference: {difference}")
+    
 def exponentiate_two_numbers_from_input():
     base = float(input("Enter the base: "))
     exponent = float(input("Enter the exponent: "))
@@ -38,4 +44,5 @@ if __name__ == "__main__":
     multiply_two_numbers_from_input()
     divide_two_numbers_from_input()
     add_two_numbers_from_input()
+    subtract_two_numbers_from_input()
     exponentiate_two_numbers_from_input()
