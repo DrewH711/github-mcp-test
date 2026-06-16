@@ -32,6 +32,12 @@ def subtract_two_numbers_from_input():
     second = float(input("Enter the second number: "))
     difference = first - second
     print(f"Difference: {difference}")
+    
+def exponentiate_two_numbers_from_input():
+    base = float(input("Enter the base: "))
+    exponent = float(input("Enter the exponent: "))
+    result = base ** exponent
+    print(f"Result: {result}")
 
 
 if __name__ == "__main__":
@@ -39,3 +45,4 @@ if __name__ == "__main__":
     divide_two_numbers_from_input()
     add_two_numbers_from_input()
     subtract_two_numbers_from_input()
+    exponentiate_two_numbers_from_input()
