@@ -25,6 +25,7 @@ github_agent = Agent(
 prompt = ""
 
 while True:
+    prompt = input("Prompt: ")
 
     output = github_agent.run_sync(user_prompt=prompt).output
 
