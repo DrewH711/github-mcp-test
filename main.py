@@ -26,12 +26,16 @@ def add_two_numbers_from_input():
     total = first + second
     print(f"Sum: {total}")
 
-def subtract():
-    first = int(input("Enter first number: "))
-    second = int(input("Second #: "))
-    print(f"{second-first}")
+
+def subtract_two_numbers_from_input():
+    first = float(input("Enter the first number: "))
+    second = float(input("Enter the second number: "))
+    difference = first - second
+    print(f"Difference: {difference}")
+
 
 if __name__ == "__main__":
     multiply_two_numbers_from_input()
     divide_two_numbers_from_input()
     add_two_numbers_from_input()
+    subtract_two_numbers_from_input()
