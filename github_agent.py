@@ -1,32 +1,40 @@
-from pydantic_ai import Agent
+from pydantic_ai import Agent, RunContext, WrapperToolset
 from pydantic_ai.mcp import MCPToolset
 import dotenv
 import utils
-from os import getenv
+from models import ghAgentContext
 
 dotenv.load_dotenv("keys.env")
 
 model = utils.load_model("kimi-k2.6")
 
-githubMCP = MCPToolset(client="https://api.githubcopilot.com/mcp/", auth=getenv("GITHUB_PAT"))
+allowed_tool_names = ["add_issue_comment", "push_files"]
 
-allowed_tool_names = []
 
-allowed_tools = githubMCP.filtered(lambda 
-ctx, tool: tool.name in allowed_tool_names)
+def build_mcp_toolset(ctx: RunContext[ghAgentContext]):
+    """
+    Build the MCP toolset dynamically so it has access to the
+    current ghAgentContext for every agent run.
+    """
+
+    MCPToolset(
+        client="http://127.0.0.1:8000/mcp",
+    ).with_metadata(
+        user_name=ctx.deps.user_name,
+        git_repository=ctx.deps.git_repository,
+        git_repo_owner_name=ctx.deps.git_repo_owner_name,
+    )
+
+class ContextualToolset(WrapperToolset):
+    pass
 
 github_agent = Agent(
     model=model,
     output_type=str,
-    instructions="Be helpful and concise. When making commits, pull requests, or comments, always include the following: 'This [commit/PR/comment] was written by [LLM MODEL NAME] on behalf of [USER NAME], and may include mistakes'",
-    toolsets=[allowed_tools]
+    deps_type=ghAgentContext,
+    instructions="""
+    You are working in the git repository DrewH711/github-mcp-test. DrewH711 is the owner
+
+    Be helpful and concise. When making commits, pull requests, or comments, always include the following: 'This [commit/PR/comment] was written by [LLM MODEL NAME] on behalf of DrewH711, and may include mistakes'""",
+    toolsets=[build_mcp_toolset, mytools]
 )
-
-prompt = ""
-
-while True:
-    prompt = input("Prompt: ")
-
-    output = github_agent.run_sync(user_prompt=prompt).output
-
-    print(output)
