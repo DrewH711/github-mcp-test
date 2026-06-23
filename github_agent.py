@@ -10,6 +10,7 @@ model = utils.load_model("kimi-k2.6")
 
 allowed_tool_names = ["add_issue_comment", "push_files"]
 
+# adding this comment for clarity
 
 def build_mcp_toolset(ctx: RunContext[ghAgentContext]):
     """
